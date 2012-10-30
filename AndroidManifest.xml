@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.diegomrosa.pila"
+      android:versionCode="1"
+      android:versionName="1.0">
+
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16" />
+
+    <application android:label="@string/appName"
+            android:name=".PilaApp"
+            android:icon="@drawable/pila_launcher">
+        <activity android:name=".apresentacao.MainActivity" android:label="@string/appName">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".apresentacao.DespesaActivity" android:label="@string/despesaLabel" />
+        <activity android:name=".apresentacao.ListaDespesasActivity" android:label="@string/listaDespesasLabel"/>
+        <activity android:name=".apresentacao.SobreActivity" android:label="@string/sobreLabel"/>
+    </application>
+</manifest>

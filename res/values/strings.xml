@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="appName">Pila</string>
+
+    <string name="novaDespesaButtonText">Nova Despesa</string>
+    <string name="listaDespesasButtonText">Lista Despesas</string>
+    <string name="sobreButtonText">Sobre</string>
+
+    <string name="despesaLabel">Nova Despesa</string>
+    <string name="valorText">Valor</string>
+    <string name="quantidadeText">Quantidade</string>
+    <string name="totalText">TOTAL</string>
+    <string name="tagsText">Tags</string>
+    <string name="salvarButtonText">Salvar</string>
+    <string name="despesaSalvaMessage">Nova despesa criada.</string>
+
+    <string name="listaDespesasLabel">Lista Despesas</string>
+    <string name="listaDespesasVazia">Nenhuma despesa encontrada.</string>
+    <string name="listaDespesasAdiciona">Adiciona</string>
+    <string name="listaDespesasRemove">Remove</string>
+
+    <string name="sobreLabel">Sobre Pila</string>
+</resources>
