@@ -1,4 +1,4 @@
-package com.diegomrosa.pila.apresentacao;
+package com.diegomrosa.pila.presentation;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,19 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import com.diegomrosa.pila.modelo.Despesa;
+import com.diegomrosa.pila.model.Expense;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DespesaAdapter extends ArrayAdapter<Despesa> {
+public class ExpenseAdapter extends ArrayAdapter<Expense> {
 
-    public DespesaAdapter(Context context) {
-        this(context, new ArrayList<Despesa>());
+    public ExpenseAdapter(Context context) {
+        this(context, new ArrayList<Expense>());
     }
 
-    public DespesaAdapter(Context context, List<Despesa> despesas) {
-        super(context, android.R.layout.simple_list_item_2, despesas);
+    public ExpenseAdapter(Context context, List<Expense> expenses) {
+        super(context, android.R.layout.simple_list_item_2, expenses);
     }
 
     @Override
@@ -28,20 +28,20 @@ public class DespesaAdapter extends ArrayAdapter<Despesa> {
             LayoutInflater li = (LayoutInflater) super.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = li.inflate(android.R.layout.simple_list_item_2, null);
         }
-        Despesa despesa = getItem(position);
+        Expense expense = getItem(position);
         TextView text1 = (TextView) view.findViewById(android.R.id.text1);
         TextView text2 = (TextView) view.findViewById(android.R.id.text2);
 
-        text1.setText(despesa.toString());
-        text2.setText(despesa.getTags());
+        text1.setText(expense.toString());
+        text2.setText(expense.getTags());
         return view;
     }
 
-    public void setData(List<Despesa> despesas) {
+    public void setData(List<Expense> expenses) {
         setNotifyOnChange(false);
         clear();
-        for (Despesa despesa : despesas) {
-            add(despesa);
+        for (Expense expense : expenses) {
+            add(expense);
         }
         notifyDataSetChanged();
     }

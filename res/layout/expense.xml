@@ -6,18 +6,18 @@
               android:orientation="vertical">
     <TextView android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/valorText" />
+            android:text="@string/valueText" />
     <EditText
-            android:id="@+id/valorEdit"
+            android:id="@+id/valueEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"/>
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/quantidadeText" />
+            android:text="@string/expenseAmountText" />
     <EditText
-            android:id="@+id/quantidadeEdit"
+            android:id="@+id/amountEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
@@ -25,7 +25,7 @@
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/totalText" />
+            android:text="@string/expenseTotalText" />
     <EditText
             android:id="@+id/totalEdit"
             android:layout_width="match_parent"
@@ -35,15 +35,15 @@
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/tagsText"/>
+            android:text="@string/expenseTagsText"/>
     <MultiAutoCompleteTextView
             android:id="@+id/tagsEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"/>
     <Button
-            android:id="@+id/salvarButton"
+            android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/salvarButtonText"/>
+            android:text="@string/expenseSaveButtonText"/>
 </LinearLayout>

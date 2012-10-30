@@ -1,4 +1,4 @@
-package com.diegomrosa.pila.dados;
+package com.diegomrosa.pila.dataaccess;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,59 +16,61 @@ public class Db extends SQLiteOpenHelper {
         super(PilaApp.getContext(), NAME, null, VERSION);
     }
 
-    public static final class TabelaDespesa {
-        public static final String NOME = "despesa";
+    public static final class TableExpense {
+        public static final String NAME = "despesa";
 
-        public static final class Coluna {
+        public static final class Column {
             public static final String ID = "despesa_id";
-            public static final String DATA = "data";
-            public static final String VALOR = "valor";
-            public static final String QUANTIDADE = "quantidade";
+            public static final String DATE = "data";
+            public static final String VALUE = "valor";
+            public static final String AMOUNT = "quantidade";
             public static final String TAGS = "tags";
+
+            public static final String[] ALL = {ID, DATE, VALUE, AMOUNT, TAGS};
         }
 
-        public static final String SQL_CRIACAO = String.format(
+        public static final String CREATION_SQL = String.format(
                 "CREATE TABLE %s (\n" +
                 "    %s INTEGER PRIMARY KEY AUTOINCREMENT,\n" +  // id
                 "    %s INTEGER NOT NULL,\n" +  // data
                 "    %s INTEGER NOT NULL,\n" +  // valor
                 "    %s REAL NOT NULL,\n" +  // quantidade
                 "    %s TEXT(200))\n",  // tags
-                NOME,
-                Coluna.ID,
-                Coluna.DATA,
-                Coluna.VALOR,
-                Coluna.QUANTIDADE,
-                Coluna.TAGS);
-        public static final String ORDER_BY_DATA = Coluna.DATA + " DESC";
-        public static final String SQL_REMOCAO = Coluna.ID + " = ?";
+                NAME,
+                Column.ID,
+                Column.DATE,
+                Column.VALUE,
+                Column.AMOUNT,
+                Column.TAGS);
+        public static final String ORDER_BY_DATA = Column.DATE + " DESC";
+        public static final String SQL_REMOCAO = Column.ID + " = ?";
     }
 
-    public static final class TabelaTag {
-        public static final String NOME = "tag";
+    public static final class TableTag {
+        public static final String NAME = "tag";
 
-        public static final class Coluna {
-            public static final String NOME = "nome";
+        public static final class Column {
+            public static final String NAME = "nome";
         }
 
-        public static final String SQL_CRIACAO = String.format(
+        public static final String CREATION_SQL = String.format(
                 "CREATE TABLE %s (\n" +
                 "    %s TEXT(50))\n",  // nome
-                NOME,
-                Coluna.NOME);
-        public static final String ORDER_BY = Coluna.NOME + " ASC";
+                NAME,
+                Column.NAME);
+        public static final String ORDER_BY = Column.NAME + " ASC";
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(TabelaDespesa.SQL_CRIACAO);
-        sqLiteDatabase.execSQL(TabelaTag.SQL_CRIACAO);
+        sqLiteDatabase.execSQL(TableExpense.CREATION_SQL);
+        sqLiteDatabase.execSQL(TableTag.CREATION_SQL);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         if ((oldVersion == 1) && (newVersion == 2)) {
-            sqLiteDatabase.execSQL(TabelaTag.SQL_CRIACAO);
+            sqLiteDatabase.execSQL(TableTag.CREATION_SQL);
         }
     }
 

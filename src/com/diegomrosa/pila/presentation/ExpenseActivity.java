@@ -1,4 +1,4 @@
-package com.diegomrosa.pila.apresentacao;
+package com.diegomrosa.pila.presentation;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -7,31 +7,31 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.*;
-import com.diegomrosa.pila.modelo.Dinheiro;
+import com.diegomrosa.pila.model.Money;
 import com.diegomrosa.pila.R;
-import com.diegomrosa.pila.modelo.Despesa;
-import com.diegomrosa.pila.modelo.GerenciadorDespesas;
+import com.diegomrosa.pila.model.Expense;
+import com.diegomrosa.pila.model.ExpensesManager;
 
 import java.util.Date;
 import java.util.List;
 
-public class DespesaActivity extends Activity {
-    private EditText valorEdit;
-    private EditText quantidadeEdit;
+public class ExpenseActivity extends Activity {
+    private EditText valueEdit;
+    private EditText amountEdit;
     private EditText totalEdit;
     private MultiAutoCompleteTextView tagsEdit;
-    private Button salvarButton;
+    private Button saveButton;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.despesa);
-        valorEdit = (EditText) findViewById(R.id.valorEdit);
-        quantidadeEdit = (EditText) findViewById(R.id.quantidadeEdit);
+        setContentView(R.layout.expense);
+        valueEdit = (EditText) findViewById(R.id.valueEdit);
+        amountEdit = (EditText) findViewById(R.id.amountEdit);
         totalEdit = (EditText) findViewById(R.id.totalEdit);
         tagsEdit = (MultiAutoCompleteTextView) findViewById(R.id.tagsEdit);
-        salvarButton = (Button) findViewById(R.id.salvarButton);
+        saveButton = (Button) findViewById(R.id.saveButton);
 
-        valorEdit.addTextChangedListener(new TextWatcher() {
+        valueEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
@@ -40,10 +40,10 @@ public class DespesaActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                calculaTotal();
+                calculateTotal();
             }
         });
-        quantidadeEdit.addTextChangedListener(new TextWatcher() {
+        amountEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
@@ -52,31 +52,31 @@ public class DespesaActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                calculaTotal();
+                calculateTotal();
             }
         });
-        salvarButton.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Date data = new Date();
-                Dinheiro valor = getValor();
-                double quantidade = getQuantidade();
+                Date date = new Date();
+                Money value = getValue();
+                double amount = getAmount();
                 String tags = tagsEdit.getText().toString();
-                Despesa despesa = new Despesa(null, data, valor, quantidade, tags);
+                Expense expense = new Expense(null, date, value, amount, tags);
 
-                adicionaDespesa(despesa);
+                addExpense(expense);
             }
         });
         tagsEdit.setAdapter(new TagAdapter(this));
         tagsEdit.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
-        carregaTags();
+        loadTags();
     }
 
-    private void carregaTags() {
+    private void loadTags() {
         new AsyncTask<Void, Void, List<String>>() {
             @Override
             protected List<String> doInBackground(Void... voids) {
-                return GerenciadorDespesas.getInstance().buscaTags();
+                return ExpensesManager.getInstance().loadTags();
             }
 
             @Override
@@ -86,45 +86,45 @@ public class DespesaActivity extends Activity {
         }.execute((Void[]) null);
     }
 
-    private void adicionaDespesa(Despesa despesa) {
-        new AsyncTask<Despesa, Void, Void>() {
+    private void addExpense(Expense expense) {
+        new AsyncTask<Expense, Void, Void>() {
             @Override
-            protected Void doInBackground(Despesa... despesas) {
-                GerenciadorDespesas.getInstance().adicionaDespesa(despesas[0]);
+            protected Void doInBackground(Expense... expenses) {
+                ExpensesManager.getInstance().addExpense(expenses[0]);
                 return null;
             }
 
             @Override
             protected void onPostExecute(Void v) {
-                Toast.makeText(DespesaActivity.this, R.string.despesaSalvaMessage,
+                Toast.makeText(ExpenseActivity.this, R.string.expenseSavedMessage,
                         Toast.LENGTH_LONG).show();
                 setResult(Activity.RESULT_OK);
                 finish();
             }
-        }.execute(despesa);
+        }.execute(expense);
     }
 
-    private void calculaTotal() {
-        Dinheiro total = getValor().multiplica(getQuantidade());
+    private void calculateTotal() {
+        Money total = getValue().multiply(getAmount());
 
         totalEdit.setText(total.toString());
     }
 
-    private Dinheiro getValor() {
-        String valorStr = valorEdit.getText().toString();
+    private Money getValue() {
+        String valueStr = valueEdit.getText().toString();
 
-        if ((valorStr == null) || (valorStr.trim().length() == 0)) {
-            return Dinheiro.ZERO;
+        if ((valueStr == null) || (valueStr.trim().length() == 0)) {
+            return Money.ZERO;
         }
-        return Dinheiro.parse(valorStr);
+        return Money.parse(valueStr);
     }
 
-    private double getQuantidade() {
-        String quantidadeStr = quantidadeEdit.getText().toString();
+    private double getAmount() {
+        String amountStr = amountEdit.getText().toString();
 
-        if ((quantidadeStr == null) || (quantidadeStr.trim().length() == 0)) {
+        if ((amountStr == null) || (amountStr.trim().length() == 0)) {
             return 0.0;
         }
-        return Double.parseDouble(quantidadeStr);
+        return Double.parseDouble(amountStr);
     }
 }

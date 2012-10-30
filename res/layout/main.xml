@@ -5,18 +5,18 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent" >
     <Button
-            android:id="@+id/novaDespesaButton"
+            android:id="@+id/newExpenseButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/novaDespesaButtonText" />
+            android:text="@string/newExpenseButtonText" />
     <Button
-            android:id="@+id/listaDespesasButton"
+            android:id="@+id/expensesListButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/listaDespesasButtonText"/>
+            android:text="@string/expensesListButtonText"/>
     <Button
-            android:id="@+id/sobreButton"
+            android:id="@+id/aboutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/sobreButtonText"/>
+            android:text="@string/aboutButtonText"/>
 </LinearLayout>

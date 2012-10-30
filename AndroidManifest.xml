@@ -9,15 +9,15 @@
     <application android:label="@string/appName"
             android:name=".PilaApp"
             android:icon="@drawable/pila_launcher">
-        <activity android:name=".apresentacao.MainActivity" android:label="@string/appName">
+        <activity android:name=".presentation.MainActivity" android:label="@string/appName">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".apresentacao.DespesaActivity" android:label="@string/despesaLabel" />
-        <activity android:name=".apresentacao.ListaDespesasActivity" android:label="@string/listaDespesasLabel"/>
-        <activity android:name=".apresentacao.SobreActivity" android:label="@string/sobreLabel"/>
+        <activity android:name=".presentation.ExpenseActivity" android:label="@string/expenseLabel" />
+        <activity android:name=".presentation.ExpensesListActivity" android:label="@string/expensesListLabel"/>
+        <activity android:name=".presentation.AboutActivity" android:label="@string/aboutLabel"/>
     </application>
 </manifest>

@@ -1,4 +1,4 @@
-package com.diegomrosa.pila.apresentacao;
+package com.diegomrosa.pila.presentation;
 
 import android.app.Activity;
 import android.app.ListActivity;
@@ -11,72 +11,72 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import com.diegomrosa.pila.R;
-import com.diegomrosa.pila.modelo.Despesa;
-import com.diegomrosa.pila.modelo.GerenciadorDespesas;
+import com.diegomrosa.pila.model.Expense;
+import com.diegomrosa.pila.model.ExpensesManager;
 
 import java.util.List;
 
-public class ListaDespesasActivity extends ListActivity {
-    private static final int ADICIONA_REQUEST = 1;
+public class ExpensesListActivity extends ListActivity {
+    private static final int REQUEST_ADD = 1;
 
-    private DespesaAdapter adapter;
+    private ExpenseAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_despesas);
+        setContentView(R.layout.expenses_list);
         registerForContextMenu(getListView());
         setListAdapter(getAdapter());
-        carregaDespesas();
+        loadExpenses();
     }
 
-    private DespesaAdapter getAdapter() {
+    private ExpenseAdapter getAdapter() {
         if (adapter == null) {
-            adapter = new DespesaAdapter(this);
+            adapter = new ExpenseAdapter(this);
         }
         return adapter;
     }
 
-    private void carregaDespesas() {
-        new AsyncTask<Void, Void, List<Despesa>>() {
+    private void loadExpenses() {
+        new AsyncTask<Void, Void, List<Expense>>() {
             @Override
-            protected List<Despesa> doInBackground(Void... voids) {
-                return GerenciadorDespesas.getInstance().buscaDespesas();
+            protected List<Expense> doInBackground(Void... voids) {
+                return ExpensesManager.getInstance().loadExpenses();
             }
 
             @Override
-            protected void onPostExecute(List<Despesa> despesas) {
-                getAdapter().setData(despesas);
+            protected void onPostExecute(List<Expense> expenses) {
+                getAdapter().setData(expenses);
             }
         }.execute((Void[]) null);
     }
 
-    private void removeDespesa(Despesa despesa) {
-        new AsyncTask<Despesa, Void, List<Despesa>>() {
+    private void removeExpense(Expense expense) {
+        new AsyncTask<Expense, Void, List<Expense>>() {
             @Override
-            protected List<Despesa> doInBackground(Despesa... despesas) {
-                GerenciadorDespesas.getInstance().removeDespesa(despesas[0]);
-                return GerenciadorDespesas.getInstance().buscaDespesas();
+            protected List<Expense> doInBackground(Expense... expenses) {
+                ExpensesManager.getInstance().removeExpense(expenses[0]);
+                return ExpensesManager.getInstance().loadExpenses();
             }
 
             @Override
-            protected void onPostExecute(List<Despesa> despesas) {
-                getAdapter().setData(despesas);
+            protected void onPostExecute(List<Expense> expenses) {
+                getAdapter().setData(expenses);
             }
-        }.execute(despesa);
+        }.execute(expense);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.lista_despesas, menu);
+        getMenuInflater().inflate(R.menu.expenses_list, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.adicionaItem:
-                startActivityForResult(new Intent(this, DespesaActivity.class), ADICIONA_REQUEST);
+            case R.id.addItem:
+                startActivityForResult(new Intent(this, ExpenseActivity.class), REQUEST_ADD);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -86,17 +86,17 @@ public class ListaDespesasActivity extends ListActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo info) {
         super.onCreateContextMenu(menu, v, info);
-        getMenuInflater().inflate(R.menu.lista_despesas_context, menu);
+        getMenuInflater().inflate(R.menu.expenses_list_context, menu);
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        Despesa despesa = ((DespesaAdapter) getListAdapter()).getItem(info.position);
+        Expense expense = ((ExpenseAdapter) getListAdapter()).getItem(info.position);
 
         switch (item.getItemId()) {
             case R.id.removeItem:
-                removeDespesa(despesa);
+                removeExpense(expense);
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -106,9 +106,9 @@ public class ListaDespesasActivity extends ListActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case ADICIONA_REQUEST:
+            case REQUEST_ADD:
                 if (resultCode == Activity.RESULT_OK) {
-                    carregaDespesas();
+                    loadExpenses();
                 }
                 break;
             default:
