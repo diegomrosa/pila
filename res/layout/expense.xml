@@ -20,8 +20,7 @@
             android:id="@+id/amountEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:text="1.0"/>
+            android:inputType="numberDecimal"/>
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

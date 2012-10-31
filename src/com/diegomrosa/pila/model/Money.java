@@ -2,11 +2,15 @@ package com.diegomrosa.pila.model;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
-import java.util.Locale;
 
 public class Money {
     private static final BigDecimal FACTOR = new BigDecimal(1000000);
-    private static final NumberFormat CURRENCY_FORMAT = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+    private static final String MONEY_FORMAT = "$ %s";
+    private static final NumberFormat MONEY_AMOUNT_FORMAT = NumberFormat.getNumberInstance();
+    static {
+        MONEY_AMOUNT_FORMAT.setMinimumFractionDigits(2);
+        MONEY_AMOUNT_FORMAT.setMaximumFractionDigits(2);
+    }
 
     public static final Money ZERO = new Money(0L);
 
@@ -40,8 +44,9 @@ public class Money {
 
     public String toString() {
         BigDecimal bigMoney = bigDecimalValue();
+        String moneyAmountStr = MONEY_AMOUNT_FORMAT.format(bigMoney.divide(FACTOR));
 
-        return CURRENCY_FORMAT.format(bigMoney.divide(FACTOR));
+        return String.format(MONEY_FORMAT, moneyAmountStr);
     }
 
     public BigDecimal bigDecimalValue() {

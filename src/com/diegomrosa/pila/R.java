@@ -39,6 +39,10 @@ public final class R {
     public static final class string {
         public static final int aboutButtonText=0x7f040003;
         public static final int aboutLabel=0x7f04000f;
+        /**  About file URI (no translation needed)
+ About file URI (no translation needed)
+         */
+        public static final int aboutUri=0x7f040010;
         public static final int appName=0x7f040000;
         public static final int expenseAmountText=0x7f040006;
         public static final int expenseLabel=0x7f040004;

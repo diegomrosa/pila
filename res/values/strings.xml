@@ -2,22 +2,25 @@
 <resources>
     <string name="appName">Pila</string>
 
-    <string name="newExpenseButtonText">Nova Despesa</string>
-    <string name="expensesListButtonText">Lista Despesas</string>
-    <string name="aboutButtonText">Sobre</string>
+    <string name="newExpenseButtonText">New Expense</string>
+    <string name="expensesListButtonText">Expenses List</string>
+    <string name="aboutButtonText">About</string>
 
-    <string name="expenseLabel">Nova Despesa</string>
-    <string name="valueText">Valor</string>
-    <string name="expenseAmountText">Quantidade</string>
+    <string name="expenseLabel">New Expense</string>
+    <string name="valueText">Value</string>
+    <string name="expenseAmountText">Amount</string>
     <string name="expenseTotalText">TOTAL</string>
     <string name="expenseTagsText">Tags</string>
-    <string name="expenseSaveButtonText">Salvar</string>
-    <string name="expenseSavedMessage">Nova expense criada.</string>
+    <string name="expenseSaveButtonText">Save</string>
+    <string name="expenseSavedMessage">New expense saved.</string>
 
-    <string name="expensesListLabel">Lista Despesas</string>
-    <string name="expensesListEmpty">Nenhuma expense encontrada.</string>
-    <string name="expensesListAddItemTitle">Adiciona</string>
+    <string name="expensesListLabel">Expenses List</string>
+    <string name="expensesListEmpty">No expenses.</string>
+    <string name="expensesListAddItemTitle">Add</string>
     <string name="expensesListRemoveItemTitle">Remove</string>
 
-    <string name="aboutLabel">Sobre Pila</string>
+    <string name="aboutLabel">About Pila</string>
+
+    <!-- About file URI (no translation needed)-->
+    <string name="aboutUri">file:///android_asset/default/about.html</string>
 </resources>

@@ -12,10 +12,15 @@ import com.diegomrosa.pila.R;
 import com.diegomrosa.pila.model.Expense;
 import com.diegomrosa.pila.model.ExpensesManager;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
 
 public class ExpenseActivity extends Activity {
+    private static final double DEFAULT_AMOUNT = 1.0;
+    private static final NumberFormat AMOUNT_FORMAT = NumberFormat.getNumberInstance();
+
     private EditText valueEdit;
     private EditText amountEdit;
     private EditText totalEdit;
@@ -31,6 +36,7 @@ public class ExpenseActivity extends Activity {
         tagsEdit = (MultiAutoCompleteTextView) findViewById(R.id.tagsEdit);
         saveButton = (Button) findViewById(R.id.saveButton);
 
+        amountEdit.setText(AMOUNT_FORMAT.format(DEFAULT_AMOUNT));
         valueEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}

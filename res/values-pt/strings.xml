@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="appName">Pila</string>
+
+    <string name="newExpenseButtonText">Nova Despesa</string>
+    <string name="expensesListButtonText">Lista Despesas</string>
+    <string name="aboutButtonText">Sobre</string>
+
+    <string name="expenseLabel">Nova Despesa</string>
+    <string name="valueText">Valor</string>
+    <string name="expenseAmountText">Quantidade</string>
+    <string name="expenseTotalText">TOTAL</string>
+    <string name="expenseTagsText">Tags</string>
+    <string name="expenseSaveButtonText">Salvar</string>
+    <string name="expenseSavedMessage">Nova despesa criada.</string>
+
+    <string name="expensesListLabel">Lista Despesas</string>
+    <string name="expensesListEmpty">Nenhuma despesa encontrada.</string>
+    <string name="expensesListAddItemTitle">Adiciona</string>
+    <string name="expensesListRemoveItemTitle">Remove</string>
+
+    <string name="aboutLabel">Sobre Pila</string>
+
+    <!-- About file URI (no translation needed)-->
+    <string name="aboutUri">file:///android_asset/pt/about.html</string>
+</resources>
