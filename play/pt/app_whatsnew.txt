@@ -1,0 +1,2 @@
+Versão 1.1:
+- Aplicativo disponível em inglês e português.

@@ -1,0 +1,14 @@
+Pila é um gerenciador financeiro simples para controle de despesas pessoais.
+O aplicativo permite armazenar informações sobre as despesas, tais
+como, data, valor, quantidade e tags. As tags são palavras-chave
+utilizadas para indicar a natureza dos gastos. Tags utilizadas uma
+vez são armazenadas e fornecidas como sugestão em cadastros
+subsequentes. Uma lista exibe as despesas já cadastradas.
+
+Futuras melhorias incluem:
+- Exportação para arquivos CSV.
+- Exportação para Google Drive.
+- Gerenciamento de carros: controle de consumo de combustível.
+- Gerenciamento de estabelecimentos utilizando geolocalização.
+- Fotos dos recibos.
+- Controle de entradas.

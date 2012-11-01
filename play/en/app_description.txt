@@ -1,0 +1,13 @@
+Pila is a simple finance manager designed for controlling
+personal expenses. The app allows storing information about the
+expenses, such as date, value, amount, and tags. Tags are keywords
+used to describe the nature of the expenses. Tags that are used
+once are stored and presented as a suggestion in future typings.
+
+Future improvements include:
+- Export to CSV files.
+- Export to Google Drive.
+- Management of cars: control of fuel consumption.
+- Management of venues using geopositioning.
+- Photos of receipts.
+- Control of income.

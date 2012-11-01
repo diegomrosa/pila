@@ -22,5 +22,5 @@
     <string name="aboutLabel">About Pila</string>
 
     <!-- About file URI (no translation needed)-->
-    <string name="aboutUri">file:///android_asset/default/about.html</string>
+    <string name="aboutUri">file:///android_asset/en/about.html</string>
 </resources>
